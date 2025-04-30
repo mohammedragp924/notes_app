@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/widgets/custom_app_bar.dart';
 import 'package:note_app/widgets/notes_list_view.dart';
+// ignore_for_file: deprecated_member_use
 
 class NotesViewBody extends StatelessWidget {
   const NotesViewBody({super.key});
@@ -10,7 +11,10 @@ class NotesViewBody extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 50.0, left: 20.0, right: 20.0),
       child: Column(
-        children: [CustomAppBar(), const Expanded(child: NotesListView())],
+        children: [
+          CustomAppBar(title: 'Notes', icon: Icons.search),
+          const Expanded(child: NotesListView()),
+        ],
       ),
     );
   }
