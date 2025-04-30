@@ -13,14 +13,14 @@ class CustomTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: TextField(
-        cursorColor: KPrimaryColor,
+        cursorColor: kPrimaryColor,
         maxLines: maxLines,
         decoration: InputDecoration(
           hintText: hintText,
           // hintStyle: TextStyle(color: KPrimaryColor, fontSize: 15),
           border: buildBorder(),
           enabledBorder: buildBorder(),
-          focusedBorder: buildBorder(KPrimaryColor),
+          focusedBorder: buildBorder(kPrimaryColor),
         ),
       ),
     );
