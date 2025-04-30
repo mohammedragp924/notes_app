@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 // ignore_for_file: deprecated_member_use
 
-
 class NoteItem extends StatelessWidget {
   const NoteItem({super.key});
 
@@ -40,7 +39,7 @@ class NoteItem extends StatelessWidget {
                     'Building a note app with Flutter is fun!',
                     style: TextStyle(
                       color: Colors.black.withOpacity(0.5),
-                      fontSize: 20,
+                      fontSize: 18,
                     ),
                   ),
                 ),
@@ -59,7 +58,7 @@ class NoteItem extends StatelessWidget {
                   'April 30,2025',
                   style: TextStyle(
                     color: Colors.black.withOpacity(0.5),
-                    fontSize: 16,
+                    fontSize: 14,
                   ),
                 ),
               ),
