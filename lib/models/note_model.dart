@@ -11,13 +11,13 @@ class NoteModel extends HiveObject {
   @HiveField(1)
   final String suptitle;
   @HiveField(2)
-  final String dateTime;
+  final String date;
   @HiveField(3)
   final int color;
   NoteModel({
     required this.title,
     required this.suptitle,
-    required this.dateTime,
+    required this.date,
     required this.color,
   });
 }
