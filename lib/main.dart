@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app/views/notes_view.dart';
 import 'package:note_app/models/note_model.dart';
 import 'package:note_app/simple_bloc_observe.dart';
-import 'package:note_app/cubits/add_note_cubit/add_note_cubit_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,7 +13,7 @@ void main() async {
 
   Hive.registerAdapter(NoteModelAdapter());
 
-  await Hive.openBox(kNotesBox);
+  await Hive.openBox<NoteModel>(kNotesBox);
 
   Bloc.observer = SimpleBlocObserve();
 

@@ -11,7 +11,11 @@ class NotesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => NotesCubitCubit(),
+      create: (context) {
+        final cubit = NotesCubitCubit();
+        cubit.fetchAllNotes();
+        return cubit;
+      },
       child: Scaffold(
         floatingActionButton: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -24,12 +28,12 @@ class NotesView extends StatelessWidget {
                 isScrollControlled: true,
                 context: context,
                 builder: (context) {
-                  return AddNoteBottomSheet();
+                  return const AddNoteBottomSheet();
                 },
               );
             },
             backgroundColor: kPrimaryColor,
-            child: Icon(Icons.add, color: Colors.black, size: 30.0),
+            child: const Icon(Icons.add, color: Colors.black, size: 30.0),
           ),
         ),
         body: const NotesViewBody(),
