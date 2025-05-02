@@ -2,16 +2,25 @@ import 'package:bloc/bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:meta/meta.dart';
 import 'package:note_app/constants.dart';
+import 'package:equatable/equatable.dart';
 import 'package:note_app/models/note_model.dart';
 
 part 'notes_cubit_state.dart';
 
 class NotesCubitCubit extends Cubit<NotesCubitState> {
   NotesCubitCubit() : super(NotesCubitInitial());
-   List<NoteModel>? notes;
+  List<NoteModel>? notes;
 
-  fetchAllNotes() {
-    var notesBox = Hive.box<NoteModel>(kNotesBox);
-    notes = notesBox.values.toList();
+  fetchAllNotes() async {
+    emit(NotesCubitLoading());
+    try {
+      var notesBox = Hive.box<NoteModel>(kNotesBox);
+      notes = notesBox.values.toList();
+      emit(NotesCubitSuccess());
+    } catch (e) {
+     
+
+      emit(NotesCubitSuccess()); 
+    }
   }
 }

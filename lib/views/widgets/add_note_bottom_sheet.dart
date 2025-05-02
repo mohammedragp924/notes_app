@@ -9,44 +9,26 @@ class AddNoteBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) {
-        return AddNoteCubit();
+    return BlocConsumer<AddNoteCubit, AddNoteState>(
+      listener: (context, state) {
+        if (state is AddNoteFaliure) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.errorMessage)));
+        }
+        if (state is AddNoteSuccess) {
+          BlocProvider.of<NotesCubitCubit>(context).fetchAllNotes();
+          Navigator.of(context).pop();
+        }
       },
-      child: BlocConsumer<AddNoteCubit, AddNoteState>(
-        listener: (context, state) {
-          if (state is AddNoteFaliure) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.errorMessage),
-                backgroundColor: Colors.red,
-              ),
-            );
-          }
-          if (state is AddNoteSuccess) {
-            BlocProvider.of<NotesCubitCubit>(context).fetchAllNotes();
-
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Note added successfully'),
-                backgroundColor: Colors.green,
-              ),
-            );
-            Navigator.pop(context);
-          }
-        },
-        builder: (context, state) {
-          return AbsorbPointer(
-            absorbing: state is AddNoteLoading ? true : false,
-            child: Padding(
-              padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom,
-              ),
-              child: SingleChildScrollView(child: AddNoteForm()),
-            ),
-          );
-        },
-      ),
+      builder: (context, state) {
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: const SingleChildScrollView(child: AddNoteForm()),
+        );
+      },
     );
   }
 }
